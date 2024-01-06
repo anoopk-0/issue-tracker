@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
-import IssueAction from "./IssueAction";
 import { IssueStatusBadge, Link } from "../components";
+import IssueAction from "./IssueAction";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
@@ -44,5 +44,12 @@ const IssuesPage = async () => {
     </div>
   );
 };
+
+//to make it a dynamic route, next js make the route with params as static route and cache the value and avoid rendering
+export const dynamic = "force-dynamic";
+
+//router caching (client-side caching)
+// - to store the payload in the browser, as user navigate
+// - last for a session, and get latest once we reload
 
 export default IssuesPage;

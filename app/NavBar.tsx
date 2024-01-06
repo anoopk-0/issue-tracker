@@ -7,7 +7,7 @@ import classNames from "classnames";
 
 const NavBar = () => {
   const links = [
-    { label: "Dashboard", href: "/dashboard" },
+    { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
   ];
 
