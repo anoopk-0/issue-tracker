@@ -12,12 +12,12 @@ const AssigneeSelect = ({
 }) => {
   return (
     <Select.Root defaultValue={defaultValue || "Assignee"}>
-      <Select.Trigger />
+      <Select.Trigger placeholder="Assignee" />
       <Select.Content>
         <Select.Group>
           <Select.Label>Suggestion</Select.Label>
           {options.map((option) => (
-            <Select.Item key={option.id} value={option.name}>
+            <Select.Item key={option.id} value={option.name!}>
               {option.name}
             </Select.Item>
           ))}
