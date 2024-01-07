@@ -20,6 +20,8 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
 
   const pageCount = Math.ceil(itemCount / pageSize);
 
+  console.log(pageCount);
+
   if (pageCount <= 1) return null;
 
   const changePage = (page: number) => {
