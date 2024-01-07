@@ -13,15 +13,20 @@ interface Props {
   };
 }
 
-const IssuesPage = async ({ searchParams: { status, orderBy } }: Props) => {
+const IssuesPage = async ({ searchParams }: Props) => {
   const columns: { label: string; value: keyof Issue; className?: string }[] = [
     { label: "Issue", value: "title" },
     { label: "Status", value: "status", className: "hidden md:table-cell" },
     { label: "Created", value: "createdAt", className: "hidden md:table-cell" },
   ];
 
+  const orderBy = searchParams.orderBy
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
+
   const issues = await prisma.issue.findMany({
-    where: { status },
+    where: { status: searchParams.status },
+    orderBy,
   });
 
   return (
@@ -37,12 +42,17 @@ const IssuesPage = async ({ searchParams: { status, orderBy } }: Props) => {
               >
                 <NextLink
                   href={{
-                    query: { status, orderBy: column.value },
+                    query: {
+                      status: searchParams.status,
+                      orderBy: column.value,
+                    },
                   }}
                 >
                   {column.label}
                 </NextLink>
-                {column.value === orderBy && <ArrowUpIcon className="inline" />}
+                {column.value === searchParams.orderBy && (
+                  <ArrowUpIcon className="inline" />
+                )}
               </Table.ColumnHeaderCell>
             ))}
           </Table.Row>
