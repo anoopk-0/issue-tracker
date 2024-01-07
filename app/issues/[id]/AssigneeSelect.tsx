@@ -12,7 +12,7 @@ const AssigneeSelect = ({
 }) => {
   return (
     <Select.Root defaultValue={defaultValue || "Assignee"}>
-      <Select.Trigger placeholder="Assignee" />
+      <Select.Trigger />
       <Select.Content>
         <Select.Group>
           <Select.Label>Suggestion</Select.Label>
